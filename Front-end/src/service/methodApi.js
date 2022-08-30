@@ -1,4 +1,4 @@
-const Base = 'http://localhost:8080';
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const header = {
     mode: 'cors',
@@ -9,13 +9,19 @@ const header = {
 }
 
 export const get = async (route) => {
-    const response = await fetch(`${Base}/${route}`, header);
+    const response = await fetch(`${BASE_URL}/${route}`, header);
+    const data = response.json();
+    return data;
+}
+
+export const getApiOutside = async (route) => {
+    const response = await fetch(`${route}`);
     const data = response.json();
     return data;
 }
 
 export const post = async (route, form) => {
-    const response = await fetch(`${Base}/${route}`, {
+    const response = await fetch(`${BASE_URL}/${route}`, {
         ...header,
         body: JSON.stringify(form),
         method: 'POST'
@@ -25,7 +31,7 @@ export const post = async (route, form) => {
 }
 
 export const put = async (route, form) => {
-    const response = await fetch(`${Base}/${route}`, {
+    const response = await fetch(`${BASE_URL}/${route}`, {
         ...header,
         body: JSON.stringify(form),
         method: 'PUT'
@@ -36,7 +42,7 @@ export const put = async (route, form) => {
 
 export const delet = async (route, messenger )=> {
     if(window.confirm(`Estas seguro de eliminar ${messenger}?`)){
-        await fetch(`${Base}/${route}`, {
+        await fetch(`${BASE_URL}/${route}`, {
             ...header,
             method: 'DELETE'
         });
