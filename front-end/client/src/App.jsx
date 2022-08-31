@@ -9,7 +9,6 @@ import { useState } from 'react';
 import ShoppingCart from './components/parcials/ShoppingCart';
 import DetailProduct from './components/main/product/DetailProduct';
 import Payment from './components/main/payment/Payment';
-import MapDelivery from './components/main/payment/MapDelivery';
 
 
 function App() {
@@ -112,13 +111,6 @@ function App() {
         <Route path='/payment'
           element={
             <Payment
-              cart={cart}
-            />
-          }
-        />
-        <Route path='/prueba'
-          element={
-            <MapDelivery
               cart={cart}
             />
           }
