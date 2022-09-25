@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import Spinner from 'react-bootstrap/Spinner';
 import { useState, useEffect } from 'react';
-import { getApiOutside } from '../../../service/methodApi';
+import { getApiOutside, post } from '../../../service/methodApi';
 import { useNavigate } from 'react-router-dom';
 
 const Payment = ({ cart }) => {
@@ -39,7 +39,7 @@ const Payment = ({ cart }) => {
             .then(response => {
                 const address = response?.features[0]?.properties.address;
                 //setShowHomeDelivery(`${address.display_name}`)
-                setShowHomeDelivery(`${address.road}, ${address.town}, ${address.state}, ${address.country} `)
+                setShowHomeDelivery(`${address.road ? address.road + ',' : ''} ${address.town ? address.town + ','  : ''} ${address.state ? address.state + ','  : ''} ${address.country ? address.country : ''} `);
             });
     }
 
@@ -54,6 +54,9 @@ const Payment = ({ cart }) => {
     const sendData = () => {
         setAnswerServer({ ...answerServer, ['state']: 0 });
         localStorage.setItem("localUser", JSON.stringify(data));
+        console.log(data);
+        console.log('cart: ', cart);
+        post('shopping/store', { ...data, ['detailShopping']: cart })
     };
 
     const geolocation = () => {

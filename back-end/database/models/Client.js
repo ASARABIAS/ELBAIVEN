@@ -22,6 +22,13 @@ module.exports = (sequelize, dataTypes) => {
         paranoid: true
     };
     const Clients = sequelize.define(alias, cols, config);
+    
+    Clients.associate = (models) =>{
+        Clients.hasMany(models.Shopping,{
+            as: "client",
+            foreignKey: "idClient"
+        });
+    }
 
     return Clients;
 

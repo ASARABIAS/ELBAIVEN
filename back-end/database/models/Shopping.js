@@ -6,13 +6,13 @@ module.exports = (sequelize, dataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        date :{
+        date: {
             type: dataTypes.DATE,
         },
-        total :{
+        total: {
             type: dataTypes.DOUBLE,
         },
-        idClient:{
+        idClient: {
             type: dataTypes.INTEGER,
         }
     };
@@ -22,6 +22,19 @@ module.exports = (sequelize, dataTypes) => {
         paranoid: true
     };
     const Shopping = sequelize.define(alias, cols, config);
+
+    Shopping.associate = (models) => {
+        Shopping.belongsTo(models.Clients, {
+            as: 'clientShopping',
+            foreignKey: 'idClient'
+        });
+        Shopping.belongsToMany(models.Products, {
+            as: 'products',
+            through: "DetailShopping",
+            foreignKey: "idShopping",
+            otherKey: "idProduct"
+        });
+    }
 
     return Shopping;
 

@@ -6,28 +6,28 @@ module.exports = (sequelize, dataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        name :{
+        name: {
             type: dataTypes.STRING,
             unique: true,
             allowNull: false,
         },
-        quantity :{ /*la cantidad es representada 1 = 30 unidades o 4 unidades si esta en tru isSaleSixpack */
+        quantity: { /*la cantidad es representada 1 = 30 unidades o 4 unidades si esta en tru isSaleSixpack */
             type: dataTypes.INTEGER,
             allowNull: false,
         },
-        description:{
+        description: {
             type: dataTypes.TEXT,
             allowNull: false,
         },
-        price:{
-            type:dataTypes.DOUBLE,
+        price: {
+            type: dataTypes.DOUBLE,
             allowNull: false,
         },
-        image :{
+        image: {
             type: dataTypes.STRING,
             allowNull: false,
         },
-        isSaleSixpack :{ /*0 => false; 1 = true */
+        isSaleSixpack: { /*0 => false; 1 = true */
             type: dataTypes.TINYINT,
             allowNull: false,
         },
@@ -38,6 +38,15 @@ module.exports = (sequelize, dataTypes) => {
         paranoid: true
     };
     const Products = sequelize.define(alias, cols, config);
+
+    Products.associate = (models) => {
+        Products.belongsToMany(models.Shopping, {
+            as: 'Shoppings',
+            through: "DetailShopping",
+            foreignKey: "idProduct",
+            otherKey: "idShopping"
+        });
+    }
 
     return Products;
 
