@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.ejemplomenu.MainActivity">
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/ic_baseline_account_circle_24"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom" />
+    <item
+        android:icon="@drawable/ic_baseline_shopping_cart_24"
+        app:showAsAction="ifRoom" />
+</menu>
