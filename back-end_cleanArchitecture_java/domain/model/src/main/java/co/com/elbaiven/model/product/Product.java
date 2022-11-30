@@ -6,14 +6,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder(toBuilder = true)
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
     private Long id;
-    private Type type;
+    private int idType;
     private String name;
     private Long quantity; // x unit
     private String description;
-    private Double price;
+    private Float price;
     private Double discount;
     private String image;
 }

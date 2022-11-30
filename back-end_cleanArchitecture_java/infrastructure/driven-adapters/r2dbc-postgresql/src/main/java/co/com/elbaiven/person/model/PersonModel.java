@@ -1,4 +1,4 @@
-package co.com.elbaiven.category;
+package co.com.elbaiven.person.model;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
@@ -10,13 +10,19 @@ import org.springframework.data.relational.core.mapping.Table;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table("categories")
-public class CategoryModel {
+@Table("people")
+public class PersonModel {
     @Id
     @Column("id")
-    private int id;
+    private Long id;
+    @Column("identification")
+    private Long identification;
     @Column("name")
     private String name;
-    @Column("image")
-    private String image;
+    @Column("address")
+    private String address;
+    @Column("geolocation")
+    private String geolocation;
+    @Column("phone")
+    private Long phone;
 }

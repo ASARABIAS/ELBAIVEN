@@ -5,9 +5,9 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface UserRepository {
-    Mono<Void> create(User user);
+    Mono<User> create(User user);
     Mono<User> read(Long id);
-    Mono<Void> update(Long id,User user);
+    Mono<User> update(Long id,User user);
     Mono<Void> delete(Long id);
     Flux<User> getAll();
 }

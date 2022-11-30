@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
 public class CategoryUseCase {
     private final CategoryRepository categoryRepository;
 
-    public Mono<Void> create(Category category){
+    public Mono<Category> create(Category category){
         return categoryRepository.create(category);
     }
 
@@ -18,7 +18,7 @@ public class CategoryUseCase {
         return categoryRepository.read(id);
     }
 
-    public Mono<Void> update(int id,Category category){
+    public Mono<Category> update(int id,Category category){
         return categoryRepository.update(id,category);
     }
 

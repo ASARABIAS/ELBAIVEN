@@ -1,15 +1,18 @@
 package co.com.elbaiven.model.sale;
 import co.com.elbaiven.model.user.User;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Data
-@Builder(toBuilder = true)
+@NoArgsConstructor
+@AllArgsConstructor
 public class Sale {
     private Long id;
-    private User user;
+    private Long idUser;
     private Date date;
-    private Double total;
+    private Float total;
 }
