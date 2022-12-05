@@ -4,15 +4,20 @@ import co.com.elbaiven.category.model.CategoryModel;
 import co.com.elbaiven.category.repository.CategoryReactiveRepository;
 import co.com.elbaiven.model.category.Category;
 import co.com.elbaiven.model.category.gateways.CategoryRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@Component
+@Service
+@RequiredArgsConstructor
 public class CategoryAdapterImpl implements CategoryRepository {
-    private CategoryReactiveRepository categoryReactiveRepository;
+    private final CategoryReactiveRepository categoryReactiveRepository;
 
     public Mono<Category> create(Category category) {
+
         return !notNullFields(category) ?
                 Mono.error(new Exception("Los campos no comple con los valores aceptados")):
                 categoryReactiveRepository.save(toCategoryModel(category))

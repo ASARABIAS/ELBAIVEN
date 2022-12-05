@@ -8,15 +8,23 @@ import co.com.elbaiven.model.type.Type;
 import co.com.elbaiven.model.type.gateways.TypeRepository;
 import co.com.elbaiven.type.model.TypeModel;
 import co.com.elbaiven.type.repository.TypeReactiveRepository;
+import io.netty.handler.codec.http.HttpResponseStatus;
+import io.netty.handler.codec.http2.Http2Stream;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@Component
+import java.net.ResponseCache;
+
+@Service
+@RequiredArgsConstructor
 public class TypeAdapterImpl implements TypeRepository {
-    private TypeReactiveRepository typeReactiveRepository;
+    private final TypeReactiveRepository typeReactiveRepository;
 
     public Mono<Type> create(Type type) {
+
         return !notNullFields(type) ?
                 Mono.error(new Exception("Los campos no comple con los valores aceptados")):
                 typeReactiveRepository.save(toTypeModel(type))
@@ -48,7 +56,7 @@ public class TypeAdapterImpl implements TypeRepository {
     public static TypeModel toTypeModel(Type type) {
         return new TypeModel(
                 type.getId(),
-                type.getIdcategory(),
+                type.getIdCategory(),
                 type.getName(),
                 type.getImage()
         );
@@ -64,6 +72,6 @@ public class TypeAdapterImpl implements TypeRepository {
     }
 
     public static boolean notNullFields(Type type) {
-        return (type.getName().length() > 0 && type.getImage().length() > 0);
+        return (type.getIdCategory() > 0 && type.getName().length() > 0 && type.getImage().length() > 0);
     }
 }

@@ -2,6 +2,7 @@ package co.com.elbaiven.category.repository;
 
 import co.com.elbaiven.category.model.CategoryModel;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+import reactor.core.publisher.Mono;
 
 // TODO: This file is just an example, you should delete or modify it
 public interface CategoryReactiveRepository extends ReactiveCrudRepository<CategoryModel, Integer> {

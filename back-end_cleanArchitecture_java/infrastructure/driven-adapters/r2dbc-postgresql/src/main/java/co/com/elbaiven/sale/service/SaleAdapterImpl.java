@@ -6,13 +6,16 @@ import co.com.elbaiven.model.sale.Sale;
 import co.com.elbaiven.model.sale.gateways.SaleRepository;
 import co.com.elbaiven.sale.model.SaleModel;
 import co.com.elbaiven.sale.repository.SaleReactiveRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@Component
+@Service
+@RequiredArgsConstructor
 public class SaleAdapterImpl implements SaleRepository {
-    private SaleReactiveRepository saleReactiveRepository;
+    private final SaleReactiveRepository saleReactiveRepository;
 
     public Mono<Sale> create(Sale sale) {
         return !notNullFields(sale) ?

@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -13,6 +14,6 @@ import java.util.Date;
 public class Sale {
     private Long id;
     private Long idUser;
-    private Date date;
+    private LocalDateTime date;
     private Float total;
 }

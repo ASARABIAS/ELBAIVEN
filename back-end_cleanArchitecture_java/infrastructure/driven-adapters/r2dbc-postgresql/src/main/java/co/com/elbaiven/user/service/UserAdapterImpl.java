@@ -6,13 +6,16 @@ import co.com.elbaiven.model.user.User;
 import co.com.elbaiven.model.user.gateways.UserRepository;
 import co.com.elbaiven.user.model.UserModel;
 import co.com.elbaiven.user.repository.UserReactiveRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@Component
+@Service
+@RequiredArgsConstructor
 public class UserAdapterImpl implements UserRepository{
-    private UserReactiveRepository userReactiveRepository;
+    private final UserReactiveRepository userReactiveRepository;
 
     public Mono<User> create(User user) {
         return !notNullFields(user) ?

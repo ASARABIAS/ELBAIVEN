@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -20,7 +21,7 @@ public class SaleModel {
     @Column("iduser")
     private Long idUser;
     @Column("date")
-    private Date date;
+    private LocalDateTime date;
     @Column("total")
     private Float total;
 }

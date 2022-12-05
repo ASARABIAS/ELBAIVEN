@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Type {
     private int id;
-    private int idcategory;
+    private int idCategory;
     private String name;
     private String image;
 }

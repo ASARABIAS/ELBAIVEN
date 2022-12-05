@@ -6,13 +6,16 @@ import co.com.elbaiven.model.product.Product;
 import co.com.elbaiven.model.product.gateways.ProductRepository;
 import co.com.elbaiven.product.model.ProductModel;
 import co.com.elbaiven.product.repository.ProductReactiveRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@Component
+@Service
+@RequiredArgsConstructor
 public class ProductAdapterImpl implements ProductRepository {
-    private ProductReactiveRepository productReactiveRepository;
+    private final ProductReactiveRepository productReactiveRepository;
 
     public Mono<Product> create(Product product) {
         return !notNullFields(product) ?

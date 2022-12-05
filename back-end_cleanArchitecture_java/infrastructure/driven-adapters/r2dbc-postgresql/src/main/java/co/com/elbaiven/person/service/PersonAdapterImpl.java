@@ -4,13 +4,15 @@ import co.com.elbaiven.model.person.Person;
 import co.com.elbaiven.model.person.gateways.PersonRepository;
 import co.com.elbaiven.person.model.PersonModel;
 import co.com.elbaiven.person.repository.PersonReactiveRepository;
-import org.springframework.stereotype.Component;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@Component
+@Service
+@RequiredArgsConstructor
 public class PersonAdapterImpl implements PersonRepository{
-    private PersonReactiveRepository personReactiveRepository;
+    private final PersonReactiveRepository personReactiveRepository;
 
     public Mono<Person> create(Person person) {
         return !notNullFields(person) ?
